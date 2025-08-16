@@ -37,13 +37,7 @@ func main() {
 	}
 	defer window.Destroy()
 
-	monitor := glfw.GetPrimaryMonitor()
-	mode := monitor.GetVideoMode()
-
-	x := (mode.Width - windowWidth) / 2
-	y := (mode.Height - windowHeight) / 2
-
-	window.SetPos(x, y)
+	centerWindowOnScreen(window)
 
 	window.MakeContextCurrent()
 
@@ -73,6 +67,16 @@ func main() {
 		window.SwapBuffers()
 		glfw.PollEvents()
 	}
+}
+
+func centerWindowOnScreen(window *glfw.Window) {
+	monitor := glfw.GetPrimaryMonitor()
+	mode := monitor.GetVideoMode()
+
+	x := (mode.Width - windowWidth) / 2
+	y := (mode.Height - windowHeight) / 2
+
+	window.SetPos(x, y)
 }
 
 var vertexShader = `

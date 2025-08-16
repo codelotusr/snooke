@@ -78,26 +78,3 @@ func centerWindowOnScreen(window *glfw.Window) {
 
 	window.SetPos(x, y)
 }
-
-var vertexShader = `
-#version 330 core
-
-layout(location = 0) in vec2 aPos;
-uniform vec2 uViewport;
-
-void main() {
-    vec2 ndc = (aPos / uViewport) * 2.0 - 1.0;
-    gl_Position = vec4(ndc * vec2(1, -1), 0.0, 1.0);
-}
-` + "\x00"
-
-var fragmentShader = `
-#version 330 core
-
-uniform vec3 uColor;
-out vec4 FragColor;
-
-void main() {
-    FragColor = vec4(uColor, 1.0);
-}
-` + "\x00"
